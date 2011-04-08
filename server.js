@@ -9,7 +9,7 @@ app.configure(function(){
 });
 
 app.get('/', function(req, res){
-    res.send('Hello World from Express');
+    res.send('Hello World from Express part 2');
 });
 
 app.listen(process.env.PORT || 8001);
