@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var express = require('express');
 var app = express.createServer();
 
@@ -15,7 +16,7 @@ var users = [
 ];
 
 app.get('/', function(req, res){
-    res.send('Hello World from Express part 2<br/>user count = ' + users.length);
+    res.send('underscore exists = ' + _);
 });
 
 app.listen(process.env.PORT || 8001);
