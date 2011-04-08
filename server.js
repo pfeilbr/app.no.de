@@ -15,7 +15,7 @@ var users = [
 ];
 
 app.get('/', function(req, res){
-    res.send('Hello World from Express part 2<br/>' + users);
+    res.send('Hello World from Express part 2<br/>user count = ' + users.count);
 });
 
 app.listen(process.env.PORT || 8001);
