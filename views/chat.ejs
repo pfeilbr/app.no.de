@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>chat</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Brian Pfeil">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/ui-lightness/jquery-ui.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/socket.io/socket.io.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	jQuery(function($) {
+		
+		function showMyMessage(m) {
+			showMessage({name: socket.transport.sessionid, msg: m});
+		}
+		
+		function showMessage(m) {
+			$('#message-list').append("<pre>" + m.name + ": " + m.msg + "</pre>");
+		}
+		
+		var socket = new io.Socket(null, {port: 8003, rememberTransport: false});
+		socket.connect();
+		var sessionId = null;
+		socket.on('connect', function() {
+
+		});
+		socket.on('message', function(data) {
+			showMessage(data);
+		});
+		socket.on('disconnect', function() {
+			
+		});
+		
+		var sendCurrentMessage = function() {
+			var msg = $('#msg').val();
+			socket.send(msg);
+			$('#msg').val('');
+			showMyMessage(msg);
+		};
+		
+		$('#msg').keypress(function(e) {
+			var code = (e.keyCode ? e.keyCode : e.which);
+			 if(code == 13) { //Enter keycode
+			   sendCurrentMessage();
+			 }
+		})
+		
+		$('#send').click( sendCurrentMessage );
+		
+	});	
+	</script>
+	<style type="text/css" media="screen">
+		
+	</style>
+	
+</head>
+	<body>
+		<div id='content'>
+			<h1><%= title %></h1>
+			<input id='msg' type='text'></input>
+			<input id='send' type='button' value='send'></input>
+			<div id='message-list'></div>
+		</div>
+	</body>
+</html>
