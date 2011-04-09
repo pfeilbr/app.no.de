@@ -32,7 +32,7 @@ app.post('/p', function(req, res){
     res.send( req.body.name );
 });
 
-app.listen(8003);
+app.listen(80);
 
 // socket.io 
 var socket = io.listen(app); 
