@@ -2,7 +2,8 @@ var util = require('util'),
     _ = require('underscore'),
     express = require('express'),
     io = require('socket.io'),
-    app = express.createServer();
+    app = express.createServer(),
+    port = 8003;
 
 app.configure(function(){
     
@@ -24,15 +25,10 @@ app.get('/', function(req, res){
 });
 
 app.get('/chat', function(req, res) {
-    var title = "Chatter";
-    res.render('chat.ejs', {layout: false, title: 'Chat App'});
+    res.render('chat.ejs', {layout: false, title: 'Chatastic', port: port});
 });
 
-app.post('/p', function(req, res){
-    res.send( req.body.name );
-});
-
-app.listen(80);
+app.listen(port);
 
 // socket.io 
 var socket = io.listen(app); 
