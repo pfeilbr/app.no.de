@@ -18,7 +18,8 @@
 		}
 		
 		function showMessage(m) {
-			$('#message-list').append("<pre>" + m.name + ": " + m.msg + "</pre>");
+			$('#message-list').append("<p>" + m.name + ": " + m.msg + "</p>");
+			$('#message-list').attr('scrollTop', 1000000);
 		}
 		
 		var socket = new io.Socket(null, {port: <%= port %>, rememberTransport: false});
@@ -53,16 +54,23 @@
 	});	
 	</script>
 	<style type="text/css" media="screen">
-		
+	#message-list {
+		overflow: auto;
+		height: 200px;
+		border: 1px solid #eee;
+	}
+	
+	#message-list p:nth-child(odd) { background: #F6F6F6; }
+	#message-list p { padding: 8px; margin: 0; }
 	</style>
 	
 </head>
 	<body>
 		<div id='content'>
 			<h1><%= title %></h1>
-			<input id='msg' type='text'></input>
-			<input id='send' type='button' value='send'></input>
 			<div id='message-list'></div>
+			<input id='msg' type='text'></input>
+			<input id='send' type='button' value='send'></input>			
 		</div>
 	</body>
 </html>
