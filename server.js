@@ -29,7 +29,7 @@ app.configure(function(){
 
 app.get('/', function(req, res){
     //res.send('test');
-    res.send("<pre>" + util.inspect(req) + "</pre>");
+    res.send("<h1>Request Dump -> util.inspect(req)</h1><pre>" + util.inspect(req) + "</pre>");
 });
 
 app.get('/chat', function(req, res) {
