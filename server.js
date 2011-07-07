@@ -3,8 +3,8 @@ var util = require('util'),
     express = require('express'),
     io = require('socket.io'),
     app = express.createServer(),
-    redis = require("redis"),
-    rc = redis.createClient(),
+    //redis = require("redis"),
+    //rc = redis.createClient(),
     port = 8003;
 
 rc.get('name', function(err, res) {
