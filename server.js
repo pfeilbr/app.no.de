@@ -7,9 +7,11 @@ var util = require('util'),
     //rc = redis.createClient(),
     port = 8003;
 
+/*
 rc.get('name', function(err, res) {
    console.log(res); 
 });
+*/
 
 app.configure(function(){
     
